@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock New Style</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        z-index: 1;
+    }
+
+    body {
+        background-color: #111;
+    }
+
+    #MainWin {
+        width: 250px;
+        height: 250px;
+        border-radius: 100%;
+        margin: 4rem auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    #Viewer {
+        border-bottom: 2px solid rgb(255, 255, 255);
+        border-left: 2px solid rgb(255, 255, 255);
+        border-top: 2px solid rgb(255, 255, 255);
+        height: 40px;
+        width: 8rem;
+        position: absolute;
+        z-index: 2;
+        border-radius: 5rem;
+        right: -21%;
+        color: white;
+        font-size: 1.7rem;
+        padding-left: 0rem;
+        bottom: 41%;
+        padding-top: 0px;
+        overflow: hidden;
+    }
+
+    #Viewer>div {
+        background-color: darkblue;
+        height: 100%;
+        width: 25%;
+        margin-right: 100%;
+        color: white;
+        font: caption;
+        font-size: 1.1rem;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #black {
+        position: absolute;
+        background-color: #111;
+        width: 75px;
+        height: 60px;
+        right: -28%;
+        bottom: 38%;
+        z-index: 5;
+    }
+
+    #MinutesT {
+        color: white;
+        font-size: 1rem;
+    }
+
+    /* Second Plate  */
+    #secCir {
+        background-color: darkblue;
+        border: 5px dotted rgb(168, 168, 168);
+        width: 220px;
+        height: 220px;
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: rotate(0deg);
+        transition: 1s linear;
+    }
+
+    #secCir>div {
+        color: white;
+        position: absolute;
+        top: 0rem;
+        font: caption;
+        font-size: 1.1rem;
+    }
+
+    .secondsP>div {
+        transition: 1s linear;
+        transform: rotate(-0deg);
+    }
+
+    /* Cordinates of seconds  */
+    .secondsP:nth-child(1)>div {
+        color: rgb(255, 230, 0);
+    }
+
+    .secondsP:nth-child(4)>div {
+        color: rgb(255, 230, 0);
+    }
+
+    .secondsP:nth-child(7)>div {
+        color: rgb(255, 230, 0);
+    }
+
+    .secondsP:nth-child(10)>div {
+        color: rgb(255, 230, 0);
+    }
+
+    .secondsP:nth-child(1) {
+        margin-top: 5px;
+    }
+
+    .secondsP:nth-child(2) {
+        transform: translate(43px, 17px);
+    }
+
+    .secondsP:nth-child(3) {
+        transform: translate(80px, 52px);
+    }
+
+    .secondsP:nth-child(5) {
+        transform: translate(78px, 150px);
+    }
+
+    .secondsP:nth-child(6) {
+        transform: translate(43px, 183px);
+    }
+
+    .secondsP:nth-child(8) {
+        transform: translate(-43px, 183px);
+    }
+
+    .secondsP:nth-child(9) {
+        transform: translate(-78px, 150px);
+    }
+
+    .secondsP:nth-child(11) {
+        transform: translate(-80px, 52px);
+    }
+
+    .secondsP:nth-child(12) {
+        transform: translate(-43px, 17px);
+    }
+
+    /* Middle Points  */
+    .secondsP:nth-child(4) {
+        right: 7px;
+        margin-top: 105px;
+    }
+
+    .secondsP:nth-child(7) {
+        bottom: 10px;
+        margin-top: 195px;
+    }
+
+    .secondsP:nth-child(10) {
+        left: 10px;
+        margin-top: 105px;
+    }
+
+    /* Minute Plate  */
+    #MinCir {
+        background-color: darkblue;
+        width: 220px;
+        height: 220px;
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        zoom: 70%;
+        transition: 1s linear;
+        transform: rotate(0deg);
+    }
+
+    #MinCir>div {
+        color: white;
+        position: absolute;
+        top: 0rem;
+        font: caption;
+        font-size: 1.15rem;
+    }
+
+    .MinuteP>div {
+        transition: 1s linear;
+        transform: rotate(-0deg);
+    }
+
+    /* Cordinates of seconds  */
+    .MinuteP:nth-child(1)>div {
+        color: rgb(57, 248, 255);
+    }
+
+    .MinuteP:nth-child(4)>div {
+        color: rgb(57, 248, 255);
+    }
+
+    .MinuteP:nth-child(7)>div {
+        color: rgb(57, 248, 255);
+    }
+
+    .MinuteP:nth-child(10)>div {
+        color: rgb(57, 248, 255);
+    }
+
+    .MinuteP:nth-child(1) {
+        margin-top: 5px;
+    }
+
+    .MinuteP:nth-child(2) {
+        transform: translate(43px, 17px);
+    }
+
+    .MinuteP:nth-child(3) {
+        transform: translate(80px, 52px);
+    }
+
+    .MinuteP:nth-child(5) {
+        transform: translate(78px, 150px);
+    }
+
+    .MinuteP:nth-child(6) {
+        transform: translate(43px, 183px);
+    }
+
+    .MinuteP:nth-child(8) {
+        transform: translate(-43px, 183px);
+    }
+
+    .MinuteP:nth-child(9) {
+        transform: translate(-78px, 150px);
+    }
+
+    .MinuteP:nth-child(11) {
+        transform: translate(-80px, 52px);
+    }
+
+    .MinuteP:nth-child(12) {
+        transform: translate(-43px, 17px);
+    }
+
+    /* Middle Points  */
+    .MinuteP:nth-child(4) {
+        right: 7px;
+        margin-top: 105px;
+    }
+
+    .MinuteP:nth-child(7) {
+        bottom: 10px;
+        margin-top: 195px;
+    }
+
+    .MinuteP:nth-child(10) {
+        left: 10px;
+        margin-top: 105px;
+    }
+
+    /* Hours Section  */
+    #Hours {
+        position: absolute;
+        z-index: 4;
+        color: white;
+        font: caption;
+        font-size: 2.8rem;
+        font-weight: bold;
+        text-shadow: 0px 0px 10px rgb(219, 219, 219);
+
+    }
+</style>
+
+<body>
+    <div id="MainWin">
+        <div id="Viewer">
+            <div id="MinutesT">0</div> <!-- Default Value-->
+        </div>
+        <div id="black"></div>
+        <div id="secCir">
+            <div class="secondsP">
+                <div>45</div>
+            </div>
+            <div class="secondsP">
+                <div>50</div>
+            </div>
+            <div class="secondsP">
+                <div>55</div>
+            </div>
+            <div class="secondsP">
+                <div>60</div>
+            </div>
+            <div class="secondsP">
+                <div>5</div>
+            </div>
+            <div class="secondsP">
+                <div>10</div>
+            </div>
+            <div class="secondsP">
+                <div>15</div>
+            </div>
+            <div class="secondsP">
+                <div>20</div>
+            </div>
+            <div class="secondsP">
+                <div>25</div>
+            </div>
+            <div class="secondsP">
+                <div>30</div>
+            </div>
+            <div class="secondsP">
+                <div>35</div>
+            </div>
+            <div class="secondsP">
+                <div>40</div>
+            </div>
+        </div>
+        <div id="MinCir">
+            <div class="MinuteP">
+                <div>45</div>
+            </div>
+            <div class="MinuteP">
+                <div>50</div>
+            </div>
+            <div class="MinuteP">
+                <div>55</div>
+            </div>
+            <div class="MinuteP">
+                <div>0</div>
+            </div>
+            <div class="MinuteP">
+                <div>5</div>
+            </div>
+            <div class="MinuteP">
+                <div>10</div>
+            </div>
+            <div class="MinuteP">
+                <div>15</div>
+            </div>
+            <div class="MinuteP">
+                <div>20</div>
+            </div>
+            <div class="MinuteP">
+                <div>25</div>
+            </div>
+            <div class="MinuteP">
+                <div>30</div>
+            </div>
+            <div class="MinuteP">
+                <div>35</div>
+            </div>
+            <div class="MinuteP">
+                <div>40</div>
+            </div>
+        </div>
+        <div id="Hours">
+            0
+        </div>
+    </div>
+</body>
+<script>
+    let HoursT = document.getElementById("Hours");
+    let MinutesT = document.getElementById("MinutesT");
+    let secondPlate = document.getElementById("secCir");
+    let minutePlate = document.getElementById("MinCir");
+    let secondsP = document.getElementsByClassName("secondsP")
+    let MinuteP = document.getElementsByClassName("MinuteP")
+
+    // secondPlate.style.transform='rotate(60deg)';
+
+
+    //Creating a variable that gives us data of second as a normal number.
+
+    setInterval(() => {
+        let date = new Date;
+        let seconds = date.getSeconds();
+        secondPlate.style.transform = `rotate(-${seconds * 6}deg)`;
+        for (let i = 0; i < secondsP.length; i++) {
+            secondsP[i].firstElementChild.style.transform = `rotate(${seconds * 6}deg)`;
+
+        }
+    }, 500);
+    setInterval(() => {
+        let date = new Date;
+        let Minutes = date.getMinutes();
+        minutePlate.style.transform = `rotate(-${Minutes * 6}deg)`;
+        for (let i = 0; i < MinuteP.length; i++) {
+            MinuteP[i].firstElementChild.style.transform = `rotate(${Minutes * 6}deg)`;
+
+        }
+        MinutesT.innerText = Minutes;
+    }, 500);
+    setInterval(() => {
+        let date = new Date;
+        let Hours = date.getHours();
+        HoursT.innerText = Hours;
+    }, 500);
+</script>
+
+</html>
